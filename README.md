@@ -51,7 +51,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/Vishal-047/Personal-Portfolio.git
 cd portfolio
 ```
 
