@@ -104,7 +104,7 @@ const Header = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-200 relative z-60"
+                className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-200 relative z-[60]"
                 aria-label="Toggle menu"
               >
                 <div className="relative w-6 h-6">
@@ -119,34 +119,30 @@ const Header = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${isMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+      <div className={`fixed inset-0 z-[55] md:hidden transition-all duration-300 ${isMenuOpen ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'}`}>
         {/* Backdrop */}
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div 
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
         
         {/* Menu Panel */}
-        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900/95 backdrop-blur-lg shadow-2xl transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="flex flex-col h-full">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
-              <h2 className="text-xl font-semibold text-white">Menu</h2>
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
-                aria-label="Close menu"
-              >
-                <FiX size={24} />
-              </button>
-            </div>
-
+        <div className={`absolute top-0 right-0 h-full w-72 max-w-[80vw] bg-slate-900/98 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="flex flex-col h-full pt-20">
             {/* Navigation Items */}
             <div className="flex-1 px-6 py-8">
-              <nav className="space-y-6">
+              <nav className="space-y-4">
                 {navItems.map((item, index) => (
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-left text-slate-200 hover:text-white transition-all duration-300 font-medium py-3 px-4 rounded-lg hover:bg-white/10 transform hover:translate-x-2 ${isMenuOpen ? 'animate-slideInRight' : ''}`}
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="block w-full text-left text-slate-200 hover:text-white transition-all duration-300 font-medium py-4 px-4 rounded-lg hover:bg-white/10 transform hover:translate-x-2"
+                    style={{ 
+                      animationDelay: `${index * 100}ms`,
+                      opacity: isMenuOpen ? 1 : 0,
+                      transform: isMenuOpen ? 'translateX(0)' : 'translateX(20px)',
+                      transition: `all 0.3s ease-out ${index * 100}ms`
+                    }}
                   >
                     {item.name}
                   </button>
@@ -157,8 +153,13 @@ const Header = () => {
               <div className="mt-8 pt-6 border-t border-slate-700/50">
                 <button
                   onClick={() => scrollToSection('#contact')}
-                  className={`w-full text-center bg-white text-slate-900 px-6 py-3 rounded-lg hover:bg-slate-100 transition-all duration-300 font-medium transform hover:scale-105 ${isMenuOpen ? 'animate-slideInRight' : ''}`}
-                  style={{ animationDelay: `${navItems.length * 100}ms` }}
+                  className="w-full text-center bg-white text-slate-900 px-6 py-3 rounded-lg hover:bg-slate-100 transition-all duration-300 font-medium transform hover:scale-105"
+                  style={{ 
+                    animationDelay: `${navItems.length * 100}ms`,
+                    opacity: isMenuOpen ? 1 : 0,
+                    transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                    transition: `all 0.3s ease-out ${navItems.length * 100}ms`
+                  }}
                 >
                   Get in Touch
                 </button>
