@@ -24,6 +24,7 @@ const Contact = () => {
   };
 
   return (
+    <div>
     <section id="contact" className="footer-bg">
       <div className="container">
         <div className="section-padding">
@@ -165,6 +166,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
+  </div>
   );
 };
 
