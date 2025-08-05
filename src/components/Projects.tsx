@@ -1,6 +1,6 @@
 'use client';
 
-import { FiExternalLink, FiGithub, FiEye } from 'react-icons/fi';
+import { FiExternalLink, FiGithub } from 'react-icons/fi';
 
 const Projects = () => {
   const projects = [
@@ -124,8 +124,8 @@ const Projects = () => {
           <div className="card w-max-2xl mx-auto">
             <h3 className="text-xl font-semibold mb-4">Open Source Collaboration</h3>
             <p className="text-secondary-text mb-6">
-              I'm always interested in collaborating on open source projects and contributing to the developer community. 
-              Feel free to reach out if you'd like to work together on something exciting!
+              I&apos;m always interested in collaborating on open source projects and contributing to the developer community. 
+              Feel free to reach out if you&apos;d like to work together on something exciting!
             </p>
             <a
               href="https://github.com/Vishal-047"

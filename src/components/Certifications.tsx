@@ -1,42 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { FiChevronDown, FiChevronUp, FiStar, FiAward } from 'react-icons/fi';
+import { FiAward } from 'react-icons/fi';
 
 const Certifications = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const testimonials = [
-    {
-      quote: "Vishal is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are outstanding.",
-      name: "Sarah Johnson",
-      title: "Product Manager",
-      company: "TechCorp",
-      rating: 5
-    },
-    {
-      quote: "Working with Vishal was a great experience. He's not only technically skilled but also a great communicator and team player.",
-      name: "Michael Chen",
-      title: "Senior Developer",
-      company: "Digital Solutions",
-      rating: 5
-    },
-    {
-      quote: "Vishal's expertise in modern web technologies helped us build a robust and scalable application. Highly recommended!",
-      name: "Emily Rodriguez",
-      title: "CTO",
-      company: "StartupXYZ",
-      rating: 5
-    },
-    {
-      quote: "Professional, reliable, and technically excellent. Vishal exceeded our expectations on every project we worked on together.",
-      name: "David Thompson",
-      title: "Project Lead",
-      company: "Innovation Labs",
-      rating: 5
-    }
-  ];
-
   const certifications = [
     {
       title: "Free Code Camp: Building Website",
@@ -63,37 +29,6 @@ const Certifications = () => {
       verified: true
     }
   ];
-
-  const faqs = [
-    {
-      question: "What services do you offer?",
-      answer: "I offer full-stack web development, UI/UX design, mobile app development, and technical consulting. I specialize in React, Node.js, and modern web technologies."
-    },
-    {
-      question: "How long does a typical project take?",
-      answer: "Project timelines vary depending on complexity. A simple website might take 2-4 weeks, while a complex web application could take 2-3 months. I always provide detailed timelines upfront."
-    },
-    {
-      question: "Do you work with clients remotely?",
-      answer: "Yes, I work remotely with clients worldwide. I use modern collaboration tools to ensure smooth communication and project delivery regardless of location."
-    },
-    {
-      question: "What is your development process?",
-      answer: "I follow an agile development process: discovery and planning, design and prototyping, development and testing, and deployment with ongoing support."
-    },
-    {
-      question: "Do you provide ongoing maintenance?",
-      answer: "Yes, I offer ongoing maintenance and support packages to ensure your application stays up-to-date, secure, and performs optimally."
-    },
-    {
-      question: "What technologies do you specialize in?",
-      answer: "I specialize in React, Next.js, Node.js, TypeScript, Python, and modern web technologies. I also have experience with cloud platforms like AWS and Firebase."
-    }
-  ];
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
 
   return (
     <>

@@ -14,7 +14,7 @@ const About = () => {
               <h2 className="mb-8">About Me</h2>
               <div className="space-y-6">
                 <p>
-                I'm an enthusiastic learner exploring modern web technologies and cybersecurity. I enjoy building user-centered digital experiences that aim to solve real-world problems and support business growth.
+                I&apos;m an enthusiastic learner exploring modern web technologies and cybersecurity. I enjoy building user-centered digital experiences that aim to solve real-world problems and support business growth.
                 </p>
                 <p>
                 Exploring cybersecurity gives me a unique lens to focus on safe, reliable solutions in every project.

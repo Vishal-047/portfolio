@@ -1,8 +1,8 @@
 'use client';
-import { div, section } from 'framer-motion/client';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-import { FiArrowDown, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowDown } from 'react-icons/fi';
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -34,7 +34,7 @@ const Hero = () => {
 
             {/* Main Heading */}
             <h1 className="mb-6">
-              Hi, I'm <span className="text-gradient">Vishal Singh</span>.
+              Hi, I&apos;m <span className="text-gradient">Vishal Singh</span>.
               <br />
               A Full Stack Developer and Cybersecurity Enthusiast Building Impactful Digital Solutions
             </h1>
@@ -91,21 +91,20 @@ const Hero = () => {
 
           {/* Right Content - Photo */}
             <div className="col-span-12 lg:col-span-5 animate-slideInRight">
-              <div className="relative w-120 h-200 mx-auto lg:ml-auto">
+              <div className="relative w-100 h-100 mx-auto lg:ml-auto">
                 
-                {/* These are the background "cards" that create the tilted stack effect. Leave them as they are. */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl transform rotate-6"></div>
-                <div className="absolute inset-0 bg-slate-800 rounded-3xl transform -rotate-3 shadow-heavy"></div>
+                {/* Circular background with gradient border */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full p-1">
+                  <div className="w-full h-full bg-primary-bg rounded-full"></div>
+                </div>
 
-                {/* ▼▼▼ THIS IS THE UPDATE ▼▼▼
-                  The placeholder div has been replaced by the next/image component below.
-                */}
+                {/* Profile Photo - Circular */}
                 <Image
-                  src="/me.jpg" // Remember to place your photo here
+                  src="/me.png" // Remember to place your photo here
                   alt="A professional headshot of Vishal Singh"
                   width={500}  // Use the actual width of your image file
                   height={500} // Use the actual height of your image file
-                  className="absolute inset-0 w-full h-full object-cover rounded-3xl transform rotate-1 shadow-medium"
+                  className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full shadow-heavy"
                 />
 
                 {/* Floating Elements */}
