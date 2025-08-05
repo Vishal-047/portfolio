@@ -1,6 +1,7 @@
 'use client';
 
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import { useMultipleScrollAnimations } from '../hooks/useScrollAnimation';
 
 const Projects = () => {
   const projects = [
@@ -42,10 +43,24 @@ const Projects = () => {
     }
   ];
 
+  // Track visibility of header and individual project cards
+  const { visibilityStates, setElementRef } = useMultipleScrollAnimations(projects.length + 1, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px',
+    triggerOnce: false,
+  });
+
   return (
     <section id="projects" className="section-padding">
       <div className="container">
-        <div className="text-center mb-12">
+        <div 
+          ref={setElementRef(0)}
+          className={`text-center mb-12 transform transition-all duration-800 ease-out ${
+            visibilityStates[0] 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="mb-4">Featured Projects</h2>
           <p className="text-secondary-text w-max-w-2xl mx-auto">
             A showcase of my recent work, demonstrating my skills in web development, 
@@ -56,9 +71,16 @@ const Projects = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div 
-              key={index} 
-              className="card animate-fadeInUp"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              key={index}
+              ref={setElementRef(index + 1)}
+              className={`card transform transition-all duration-1000 ease-out hover:scale-105 hover:-translate-y-2 ${
+                visibilityStates[index + 1] 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-12 scale-95'
+              }`}
+              style={{ 
+                transitionDelay: visibilityStates[index + 1] ? `${index * 200}ms` : '0ms'
+              }}
             >
               {/* Project Image */}
               <div className="relative mb-6 overflow-hidden rounded-lg">
@@ -84,7 +106,7 @@ const Projects = () => {
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="px-3 py-1 bg-secondary-bg text-secondary-text text-xs font-medium rounded-full border border-border-color"
+                      className="px-3 py-1 bg-secondary-bg text-secondary-text text-xs font-medium rounded-full border border-border-color transform transition-all duration-300 hover:scale-110 hover:bg-accent-color hover:text-white"
                     >
                       {tag}
                     </span>
@@ -97,20 +119,20 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-secondary-text hover:text-accent-color transition-colors duration-300"
+                    className="flex items-center gap-2 text-secondary-text hover:text-accent-color transition-all duration-300 transform hover:scale-110"
                   >
-                    <FiGithub size={16} />
-                    <span className="text-sm">View Code</span>
+                    <FiGithub size={18} />
+                    <span className="text-sm font-medium">Code</span>
                   </a>
                   {project.live !== "#" && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-secondary-text hover:text-accent-color transition-colors duration-300"
+                      className="flex items-center gap-2 text-secondary-text hover:text-accent-color transition-all duration-300 transform hover:scale-110"
                     >
-                      <FiExternalLink size={16} />
-                      <span className="text-sm">Live Demo</span>
+                      <FiExternalLink size={18} />
+                      <span className="text-sm font-medium">Live Demo</span>
                     </a>
                   )}
                 </div>
@@ -143,4 +165,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

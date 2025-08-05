@@ -33,7 +33,7 @@ const Certifications = () => {
   return (
     <>
       {/* Testimonials Section */}
-      <section id="certifications" className="section-padding">
+      <section id="certifications">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="mb-4">Certifications & Achievements</h2>
@@ -70,7 +70,7 @@ const Certifications = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section><br/>
     </>
   );
 };
