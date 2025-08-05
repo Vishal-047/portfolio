@@ -24,6 +24,7 @@ const Hero = () => {
   };
 
   return (
+    <div>
     <section id="hero" className="section-padding">
       <div className="container">
         <div className="grid-12 items-center">
@@ -114,6 +115,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
+      </div>
   );
 };
 
