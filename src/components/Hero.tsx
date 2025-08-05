@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
   FiGithub,
@@ -25,10 +24,7 @@ const Hero = () => {
   };
 
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 section-padding"
-    >
+    <section id="hero" className="section-padding">
       <div className="container">
         <div className="grid-12 items-center">
           {/* Left Content */}
