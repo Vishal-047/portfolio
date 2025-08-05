@@ -8,9 +8,11 @@ interface UseScrollAnimationOptions {
   triggerOnce?: boolean;
 }
 
-export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
+export const useScrollAnimation = <T extends HTMLElement = HTMLDivElement>(
+  options: UseScrollAnimationOptions = {}
+) => {
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<T>(null);
 
   const {
     threshold = 0.1,
@@ -49,14 +51,14 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
   return { elementRef, isVisible };
 };
 
-export const useStaggeredScrollAnimation = (
+export const useStaggeredScrollAnimation = <T extends HTMLElement = HTMLDivElement>(
   itemCount: number,
   options: UseScrollAnimationOptions = {}
 ) => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
     new Array(itemCount).fill(false)
   );
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<T>(null);
 
   const {
     threshold = 0.1,

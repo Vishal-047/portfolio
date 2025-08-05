@@ -10,7 +10,7 @@ import {
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Hero = () => {
-  const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation({
+  const { elementRef: heroRef } = useScrollAnimation({
     threshold: 0.2,
     rootMargin: '0px 0px -100px 0px',
   });
@@ -90,7 +90,7 @@ const Hero = () => {
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-4'
             }`}>
-              I'm a motivated learner dedicated to building user-focused web
+              I&apos;m a motivated learner dedicated to building user-focused web
               applications and exploring the world of digital security. I blend
               curiosity with modern technologies to create robust, secure, and
               engaging experiences for diverse users.
