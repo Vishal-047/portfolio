@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import {
   FiGithub,
   FiLinkedin,
@@ -8,33 +7,15 @@ import {
   FiDownload,
   FiArrowDown,
 } from 'react-icons/fi';
+import { useMultipleScrollAnimations } from '../hooks/useScrollAnimation';
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Trigger animations on mount and scroll
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 300);
-
-    const handleScroll = () => {
-      const heroSection = document.getElementById('hero');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsVisible(isInView);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // Track visibility of 6 different elements with staggered animations
+  const { visibilityStates, setElementRef } = useMultipleScrollAnimations(6, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px',
+    triggerOnce: false, // Allow animations on scroll up/down
+  });
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -61,42 +42,50 @@ const Hero = () => {
           {/* Left Content */}
           <div className="col-span-12 lg:col-span-7 order-2 lg:order-1">
             {/* Status Pill */}
-            <div className={`mb-4 sm:mb-6 text-center lg:text-left transform transition-all duration-700 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-4'
-            }`}
-            style={{ transitionDelay: '200ms' }}>
+            <div 
+              ref={setElementRef(0)}
+              className={`mb-4 sm:mb-6 text-center lg:text-left transform transition-all duration-700 ease-out ${
+                visibilityStates[0] 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+            >
               <span className="status-pill animate-pulse">Available for Work</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className={`mb-4 sm:mb-6 text-center lg:text-left transform transition-all duration-800 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-6'
-            }`}
-            style={{ transitionDelay: '400ms' }}>
+            <h1 
+              ref={setElementRef(1)}
+              className={`mb-4 sm:mb-6 text-center lg:text-left transform transition-all duration-800 ease-out ${
+                visibilityStates[1] 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: visibilityStates[1] ? '200ms' : '0ms' }}
+            >
               Hi, I&apos;m <span className="text-gradient">Vishal Singh</span>.
               <br />
-              <span className={`inline-block transform transition-all duration-1000 ${
-                isVisible 
+              <span className={`inline-block transform transition-all duration-1000 ease-out ${
+                visibilityStates[1] 
                   ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-4'
+                  : 'opacity-0 -translate-x-8'
               }`}
-              style={{ transitionDelay: '600ms' }}>
+              style={{ transitionDelay: visibilityStates[1] ? '400ms' : '0ms' }}>
                 A Full Stack Developer and Cybersecurity Enthusiast Building
                 Impactful Digital Solutions
               </span>
             </h1>
 
             {/* Subheading */}
-            <p className={`text-lg sm:text-xl mb-6 sm:mb-8 text-secondary-text text-center lg:text-left max-w-none lg:max-w-2xl mx-auto lg:mx-0 transform transition-all duration-900 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-4'
-            }`}
-            style={{ transitionDelay: '800ms' }}>
+            <p 
+              ref={setElementRef(2)}
+              className={`text-lg sm:text-xl mb-6 sm:mb-8 text-secondary-text text-center lg:text-left max-w-none lg:max-w-2xl mx-auto lg:mx-0 transform transition-all duration-900 ease-out ${
+                visibilityStates[2] 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: visibilityStates[2] ? '300ms' : '0ms' }}
+            >
               I&apos;m a motivated learner dedicated to building user-focused web
               applications and exploring the world of digital security. I blend
               curiosity with modern technologies to create robust, secure, and
@@ -104,12 +93,15 @@ const Hero = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center lg:justify-start transform transition-all duration-1000 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-6'
-            }`}
-            style={{ transitionDelay: '1000ms' }}>
+            <div 
+              ref={setElementRef(3)}
+              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center lg:justify-start transform transition-all duration-1000 ease-out ${
+                visibilityStates[3] 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
+              style={{ transitionDelay: visibilityStates[3] ? '400ms' : '0ms' }}
+            >
               <button 
                 onClick={scrollToProjects} 
                 className="btn-primary w-full sm:w-auto min-h-[48px] touch-manipulation transform hover:scale-105 transition-all duration-300"
@@ -127,12 +119,15 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className={`flex items-center justify-center lg:justify-start gap-3 sm:gap-4 transform transition-all duration-1000 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-4'
-            }`}
-            style={{ transitionDelay: '1200ms' }}>
+            <div 
+              ref={setElementRef(4)}
+              className={`flex items-center justify-center lg:justify-start gap-3 sm:gap-4 transform transition-all duration-1000 ease-out ${
+                visibilityStates[4] 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: visibilityStates[4] ? '500ms' : '0ms' }}
+            >
               <a 
                 href="https://github.com/Vishal-047"
                 target="_blank"
@@ -162,12 +157,15 @@ const Hero = () => {
           </div>
 
           {/* Right Content - Photo */}
-          <div className={`col-span-12 lg:col-span-5 order-1 lg:order-2 transform transition-all duration-1000 ${
-            isVisible 
-              ? 'opacity-100 translate-x-0 scale-100' 
-              : 'opacity-0 translate-x-8 scale-95'
-          }`}
-          style={{ transitionDelay: '600ms' }}>
+          <div 
+            ref={setElementRef(5)}
+            className={`col-span-12 lg:col-span-5 order-1 lg:order-2 transform transition-all duration-1200 ease-out ${
+              visibilityStates[5] 
+                ? 'opacity-100 translate-x-0 scale-100 rotate-0' 
+                : 'opacity-0 translate-x-12 scale-90 rotate-3'
+            }`}
+            style={{ transitionDelay: visibilityStates[5] ? '300ms' : '0ms' }}
+          >
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto lg:ml-auto">
               {/* Circular background with gradient border */}
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full p-1 animate-pulse">
@@ -185,8 +183,12 @@ const Hero = () => {
               />
 
               {/* Floating Elements */}
-              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-accent-color rounded-full opacity-20 animate-float"></div>
-              <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-8 h-8 sm:w-12 sm:h-12 bg-accent-hover rounded-full opacity-20 animate-float animation-delay-2000"></div>
+              <div className={`absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-accent-color rounded-full opacity-20 animate-float transition-all duration-1000 ${
+                visibilityStates[5] ? 'scale-100' : 'scale-0'
+              }`}></div>
+              <div className={`absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-8 h-8 sm:w-12 sm:h-12 bg-accent-hover rounded-full opacity-20 animate-float animation-delay-2000 transition-all duration-1000 ${
+                visibilityStates[5] ? 'scale-100' : 'scale-0'
+              }`}></div>
             </div>
           </div>
         </div>

@@ -16,8 +16,8 @@ export const useScrollAnimation = <T extends HTMLElement = HTMLDivElement>(
 
   const {
     threshold = 0.1,
-    rootMargin = '0px 0px -50px 0px',
-    triggerOnce = true,
+    rootMargin = '0px 0px -100px 0px',
+    triggerOnce = false, // Changed to false for scroll-based animations
   } = options;
 
   useEffect(() => {
@@ -26,13 +26,10 @@ export const useScrollAnimation = <T extends HTMLElement = HTMLDivElement>(
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (triggerOnce) {
-            observer.unobserve(element);
-          }
-        } else if (!triggerOnce) {
-          setIsVisible(false);
+        setIsVisible(entry.isIntersecting);
+        
+        if (triggerOnce && entry.isIntersecting) {
+          observer.unobserve(element);
         }
       },
       {
@@ -55,15 +52,13 @@ export const useStaggeredScrollAnimation = <T extends HTMLElement = HTMLDivEleme
   itemCount: number,
   options: UseScrollAnimationOptions = {}
 ) => {
-  const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    new Array(itemCount).fill(false)
-  );
+  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<T>(null);
 
   const {
     threshold = 0.1,
-    rootMargin = '0px 0px -50px 0px',
-    triggerOnce = true,
+    rootMargin = '0px 0px -100px 0px',
+    triggerOnce = false,
   } = options;
 
   useEffect(() => {
@@ -72,23 +67,10 @@ export const useStaggeredScrollAnimation = <T extends HTMLElement = HTMLDivEleme
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          // Stagger the animation of items
-          visibleItems.forEach((_, index) => {
-            setTimeout(() => {
-              setVisibleItems(prev => {
-                const newState = [...prev];
-                newState[index] = true;
-                return newState;
-              });
-            }, index * 100); // 100ms delay between each item
-          });
-
-          if (triggerOnce) {
-            observer.unobserve(container);
-          }
-        } else if (!triggerOnce) {
-          setVisibleItems(new Array(itemCount).fill(false));
+        setIsVisible(entry.isIntersecting);
+        
+        if (triggerOnce && entry.isIntersecting) {
+          observer.unobserve(container);
         }
       },
       {
@@ -102,7 +84,66 @@ export const useStaggeredScrollAnimation = <T extends HTMLElement = HTMLDivEleme
     return () => {
       observer.unobserve(container);
     };
-  }, [itemCount, threshold, rootMargin, triggerOnce]);
+  }, [threshold, rootMargin, triggerOnce]);
 
-  return { containerRef, visibleItems };
+  return { containerRef, isVisible };
+};
+
+// Hook for multiple elements with individual visibility tracking
+export const useMultipleScrollAnimations = <T extends HTMLElement = HTMLDivElement>(
+  elementCount: number,
+  options: UseScrollAnimationOptions = {}
+) => {
+  const [visibilityStates, setVisibilityStates] = useState<boolean[]>(
+    new Array(elementCount).fill(false)
+  );
+  const elementRefs = useRef<(T | null)[]>(new Array(elementCount).fill(null));
+
+  const {
+    threshold = 0.2,
+    rootMargin = '0px 0px -50px 0px',
+    triggerOnce = false,
+  } = options;
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    elementRefs.current.forEach((element, index) => {
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setVisibilityStates(prev => {
+            const newStates = [...prev];
+            newStates[index] = entry.isIntersecting;
+            return newStates;
+          });
+
+          if (triggerOnce && entry.isIntersecting) {
+            observer.unobserve(element);
+          }
+        },
+        {
+          threshold,
+          rootMargin,
+        }
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [threshold, rootMargin, triggerOnce]);
+
+  const setElementRef = (index: number) => (element: T | null) => {
+    elementRefs.current[index] = element;
+  };
+
+  return {
+    visibilityStates,
+    setElementRef,
+  };
 };
