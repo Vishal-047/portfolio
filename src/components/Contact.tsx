@@ -28,9 +28,9 @@ const Contact = () => {
       <div className="container">
         <div className="section-padding">
           <div className="text-center mb-12">
-            <h2 className="text-white mb-4">Let's build something great together</h2>
+            <h2 className="text-white mb-4">Let&apos;s build something great together</h2>
             <p className="text-white/80 w-max-w-2xl mx-auto">
-              Ready to start your next project? Get in touch and let's discuss how I can help bring your ideas to life.
+              Ready to start your next project? Get in touch and let&apos;s discuss how I can help bring your ideas to life.
             </p><br></br>
           </div>
 
