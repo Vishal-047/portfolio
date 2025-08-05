@@ -33,6 +33,7 @@ body {
   line-height: 1.6;
   font-weight: 400;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -44,12 +45,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.75rem, 8vw, 2.5rem);
+  line-height: 1.1;
   font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 6vw, 2rem);
   font-weight: 700;
 }
 
@@ -68,18 +70,30 @@ p {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 5vw, 2rem);
+  padding: 0 1rem;
 }
 
 .section-padding {
-  padding: clamp(3rem, 8vw, 6rem) 0;
+  padding: 2.5rem 0;
 }
 
 /* Grid System */
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid-12 {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-12 {
+    gap: 2rem;
+  }
 }
 
 /* Buttons */
@@ -87,23 +101,28 @@ p {
   background: var(--accent-color);
   color: white;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 0.875rem 1.5rem;
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
   box-shadow: var(--shadow-medium);
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-heavy);
+@media (min-width: 640px) {
+  .btn-primary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
 }
 
 .btn-secondary {
@@ -111,21 +130,26 @@ p {
   color: var(--accent-color);
   border: 2px solid var(--accent-color);
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
-.btn-secondary:hover {
-  background: var(--accent-color);
-  color: white;
-  transform: translateY(-2px);
+@media (min-width: 640px) {
+  .btn-secondary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
 }
 
 /* Cards */
@@ -133,16 +157,16 @@ p {
   background: var(--secondary-bg);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow-light);
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-heavy);
-  background: rgba(255, 255, 255, 0.08);
+@media (min-width: 640px) {
+  .card {
+    padding: 2rem;
+  }
 }
 
 /* Navigation */
@@ -163,9 +187,9 @@ p {
   gap: 0.5rem;
   background: #10B981;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 2rem;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
@@ -197,7 +221,7 @@ p {
 .mission-bg {
   background: var(--accent-color);
   color: white;
-  padding: clamp(3rem, 8vw, 6rem) 0;
+  padding: 2.5rem 0;
 }
 
 /* Testimonials */
@@ -211,7 +235,6 @@ p {
   min-width: 300px;
   flex-shrink: 0;
 }
-
 
 /* Footer */
 .footer-bg {
@@ -270,18 +293,19 @@ p {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .grid-12 {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
+@media (min-width: 640px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
   
   .section-padding {
-    padding: clamp(2rem, 6vw, 4rem) 0;
+    padding: 4rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: clamp(4rem, 8vw, 6rem) 0;
   }
 }
 
@@ -378,5 +402,34 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 639px) {
+  .mobile-spacing-tight {
+    gap: 0.75rem;
+  }
+  
+  .mobile-text-center {
+    text-align: center;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .section-padding {
+    padding: 4rem 0;
+  }
+}
+
+/* Large screen improvements */
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: clamp(4rem, 8vw, 6rem) 0;
   }
 }
