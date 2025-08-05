@@ -1,8 +1,13 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-
-import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowDown } from 'react-icons/fi';
+import {
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiDownload,
+  FiArrowDown,
+} from 'react-icons/fi';
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -20,52 +25,50 @@ const Hero = () => {
   };
 
   return (
-    <>
-    <section id="hero" className="section-padding">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 section-padding"
+    >
       <div className="container">
         <div className="grid-12 items-center">
           {/* Left Content */}
           <div className="col-span-12 lg:col-span-7 animate-fadeInUp">
             {/* Status Pill */}
             <div className="mb-6">
-              <span className="status-pill">
-                Available for Work
-              </span>
+              <span className="status-pill">Available for Work</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="mb-6">
               Hi, I&apos;m <span className="text-gradient">Vishal Singh</span>.
               <br />
-              A Full Stack Developer and Cybersecurity Enthusiast Building Impactful Digital Solutions
+              A Full Stack Developer and Cybersecurity Enthusiast Building
+              Impactful Digital Solutions
             </h1>
 
             {/* Subheading */}
             <p className="text-xl mb-8 text-secondary-text">
-            I’m a motivated learner dedicated to building user-focused web applications and exploring the world of digital security. I blend curiosity with modern technologies to create robust, secure, and engaging experiences for diverse users.
-            </p><br></br>
+              I’m a motivated learner dedicated to building user-focused web
+              applications and exploring the world of digital security. I blend
+              curiosity with modern technologies to create robust, secure, and
+              engaging experiences for diverse users.
+            </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button
-                onClick={scrollToProjects}
-                className="btn-primary"
-              >
+              <button onClick={scrollToProjects} className="btn-primary">
                 View My Work
                 <FiArrowDown />
               </button>
-              <button
-                onClick={handleDownloadCV}
-                className="btn-secondary"
-              >
+              <button onClick={handleDownloadCV} className="btn-secondary">
                 Download CV
                 <FiDownload />
               </button>
-            </div><br></br>
+            </div>
 
             {/* Social Links */}
             <div className="flex items-center gap-4">
-              <a
+              <a 
                 href="https://github.com/Vishal-047"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -91,35 +94,31 @@ const Hero = () => {
           </div>
 
           {/* Right Content - Photo */}
-            <div className="col-span-12 lg:col-span-5 animate-slideInRight">
-              <div className="relative w-100 h-100 mx-auto lg:ml-auto">
-                
-                {/* Circular background with gradient border */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full p-1">
-                  <div className="w-full h-full bg-primary-bg rounded-full"></div>
-                </div>
-
-                {/* Profile Photo - Circular */}
-                <Image
-                  src="/me.png" // Remember to place your photo here
-                  alt="A professional headshot of Vishal Singh"
-                  width={500}  // Use the actual width of your image file
-                  height={500} // Use the actual height of your image file
-                  className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full shadow-heavy"
-                />
-
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent-color rounded-full opacity-20 animate-float"></div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent-hover rounded-full opacity-20 animate-float animation-delay-2000"></div>
+          <div className="col-span-12 lg:col-span-5 animate-slideInRight">
+            <div className="relative w-100 h-100 mx-auto lg:ml-auto">
+              {/* Circular background with gradient border */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full p-1">
+                <div className="w-full h-full bg-primary-bg rounded-full"></div>
               </div>
-            </div>
 
-          
+              {/* Profile Photo */}
+              <Image
+                src="/me.png"
+                alt="A professional headshot of Vishal Singh"
+                width={500}
+                height={500}
+                className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full shadow-heavy"
+              />
+
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent-color rounded-full opacity-20 animate-float"></div>
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent-hover rounded-full opacity-20 animate-float animation-delay-2000"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    </>
   );
 };
 
-export default Hero; 
+export default Hero;
