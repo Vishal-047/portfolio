@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <>
-    <section id="hero" className="section-padding">
+    <section id="hero" className="section-padding pt-20 sm:pt-24 lg:pt-16">
       <div className="container">
         <div className="grid-12 items-center gap-8 lg:gap-12">
           {/* Left Content */}
