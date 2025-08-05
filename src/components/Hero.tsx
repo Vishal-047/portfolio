@@ -45,7 +45,7 @@ const Hero = () => {
 
             {/* Subheading */}
             <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-secondary-text text-center lg:text-left max-w-none lg:max-w-2xl mx-auto lg:mx-0">
-              I'm a motivated learner dedicated to building user-focused web
+              I&apos;m a motivated learner dedicated to building user-focused web
               applications and exploring the world of digital security. I blend
               curiosity with modern technologies to create robust, secure, and
               engaging experiences for diverse users.
