@@ -9,7 +9,6 @@ const Contact = () => {
     email: '',
     message: ''
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -24,7 +23,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <>
     <section id="contact" className="footer-bg">
       <div className="container">
         <div className="section-padding">
@@ -166,7 +165,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  </div>
+  </>
   );
 };
 
