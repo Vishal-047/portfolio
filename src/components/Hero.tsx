@@ -61,7 +61,7 @@ const Hero = () => {
                 Download CV
                 <FiDownload />
               </button>
-            </div>
+            </div><br/>
 
             {/* Social Links */}
             <div className="flex items-center gap-4">

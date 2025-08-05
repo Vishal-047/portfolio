@@ -85,7 +85,7 @@ const Skills = () => {
                 <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mr-4">
                   <FiAward className="text-white" size={20} />
                 </div>
-                <div>
+                <div className="px-4">
                   <h4 className="font-semibold">Hackathon Finalist</h4>
                   <p className="text-sm text-secondary-text">Google Office, 2025</p>
                 </div>
