@@ -8,12 +8,12 @@ const Skills = () => {
     {
       title: "Programming Languages",
       icon: <FiCode />,
-      skills: ["JavaScript", "TypeScript", "Python", "HTML5", "CSS3", "C++", "Java"]
+      skills: ["JavaScript", "TypeScript", "Python", "HTML", "CSS", "C++", "Java","C"]
     },
     {
       title: "Frontend Development",
       icon: <FiCode />,
-      skills: ["React", "Next.js", "Tailwind CSS", "Bootstrap", "Redux", "Framer Motion"]
+      skills: ["React", "Next.js", "Tailwind CSS", "Bootstrap","Figma", "Framer Motion"]
     },
     {
       title: "Backend Development",
@@ -23,12 +23,12 @@ const Skills = () => {
     {
       title: "Databases",
       icon: <FiDatabase />,
-      skills: ["MongoDB", "MySQL", "SQLite", "PostgreSQL", "Mongoose"]
+      skills: ["MongoDB", "MySQL", "SQLite", "FireBase", "Mongoose"]
     },
     {
       title: "Tools & Technologies",
       icon: <FiTool />,
-      skills: ["Git", "GitHub", "VS Code", "Docker", "Firebase", "AWS", "Vercel"]
+      skills: ["Git", "GitHub", "VS Code", "Docker", "AWS", "Vercel"]
     },
     {
       title: "Cybersecurity",
@@ -143,7 +143,7 @@ const Skills = () => {
                 </div>
               </div>
               <p className="text-secondary-text text-sm">
-                Achieved 4-star rating in Python programming on HackerRank platform, demonstrating strong algorithmic skills.
+              Earned a 4-star proficiency rating in both Python and C++ on the Hacker Rank platform , demonstrating strong algorithmic skills.
               </p>
             </div>
           </div>

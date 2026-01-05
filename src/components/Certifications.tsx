@@ -5,11 +5,11 @@ import { FiAward } from 'react-icons/fi';
 const Certifications = () => {
   const certifications = [
     {
-      title: "Free Code Camp: Building Website",
-      issuer: "Free Code Camp",
-      date: "October 2023",
-      description: "Comprehensive web development certification covering HTML, CSS, and JavaScript fundamentals.",
-      category: "Web Development",
+      title: "C++ programming-OOPS and DSA",
+      issuer: "CSE Pathshala",
+      date: "June 2025",
+      description: "Learned the basic to advance concept of C++ programming, OOPs and DSA.",
+      category: "Programming",
       verified: true
     },
     {
@@ -21,11 +21,11 @@ const Certifications = () => {
       verified: true
     },
     {
-      title: "Project Management: Basics",
-      issuer: "Project Management Institute",
-      date: "October 2023",
-      description: "Fundamental project management principles and methodologies for effective team leadership.",
-      category: "Project Management",
+      title: "Packet Switching Networks and Algorithms",
+      issuer: "Coursera",
+      date: "- December 2024.",
+      description: "Gained foundational knowledge in how modern communication networks transmit data using packet switching — breaking information into packets, routing them efficiently, and reassembling them at the destination",
+      category: "Networking",
       verified: true
     }
   ];
