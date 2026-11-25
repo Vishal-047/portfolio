@@ -153,14 +153,6 @@ The portfolio is fully responsive and optimized for:
 - Keyboard navigation support
 - High contrast ratios
 
-## 📞 Contact
-
-- **Email**: vishalrw007@gmail.com
-- **Phone**: +91 7355752539
-- **Location**: Sahbajganj Sahjanwa, Gorakhpur 273209
-- **GitHub**: [https://github.com/Vishal-047](https://github.com/Vishal-047)
-- **LinkedIn**: [https://www.linkedin.com/in/vishal0407](https://www.linkedin.com/in/vishal0407)
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
